@@ -1,0 +1,42 @@
+{
+  "categories": [
+    {
+      "id": "e38a11c6-ea17-4e54-9b98-74a27e83c104",
+      "name": "dđádfasdf",
+      "short_name": "ddádf",
+      "order_num": "ddádfasd"
+    },
+    {
+      "name": "ccc",
+      "short_name": "sad",
+      "order_num": "ádf",
+      "id": "f9041988-b8f9-4566-b53d-619c0405ff57"
+    },
+    {
+      "id": "8d0af930-b15a-4312-824c-18a6ddb41126",
+      "name": "ass",
+      "short_name": "ssdfas",
+      "order_num": "ádfa"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "Product 1",
+      "category_id": 1,
+      "order_num": 1
+    },
+    {
+      "id": "2",
+      "name": "Product 2",
+      "category_id": 1,
+      "order_num": 2
+    },
+    {
+      "id": "3",
+      "name": "Product 3",
+      "category_id": 2,
+      "order_num": 1
+    }
+  ]
+}
