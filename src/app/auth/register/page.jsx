@@ -4,6 +4,7 @@ import { Button, Checkbox, Form, Input } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { ClimbingBoxLoader } from "react-spinners";
 import { registerAccount } from "@/app/store/slice/authSlice";
+import Link from "next/link";
 export default function RegisterPage() {
   const { isLoading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -16,6 +17,13 @@ export default function RegisterPage() {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <ClimbingBoxLoader size={15} color="#2ecca4" />
+      </div>
+    );
+  }
   return (
     <div className="flex justify-center items-center h-screen">
       <Form
@@ -74,18 +82,21 @@ export default function RegisterPage() {
           <Input.Password />
         </Form.Item>
 
-        <Form.Item
-          wrapperCol={{
-            offset: 8,
-            span: 16,
-          }}
-        >
-          <Button type="primary" htmlType="submit">
-            Register
-          </Button>
-        </Form.Item>
+        <div className="flex justify-center items-center gap-4">
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Register
+            </Button>
+          </Form.Item>
+          <Form.Item>
+            <Link href={"/"}>
+              <Button type="primary" danger>
+                Back
+              </Button>
+            </Link>
+          </Form.Item>
+        </div>
       </Form>
-      {isLoading && <ClimbingBoxLoader />}
     </div>
   );
 }

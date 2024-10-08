@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ClimbingBoxLoader } from "react-spinners";
 import CommonTable from "@/(components)/CommonTable";
 import DialogComponent from "@/(components)/Dialog";
-export default function () {
+export default function ProductPage() {
   const { isLoading } = useSelector((state) => state.product);
   const [productId, setProductId] = useState(false);
   const dispatch = useDispatch();
@@ -62,7 +62,7 @@ export default function () {
         handleDelete={handleDelete}
       />
 
-      {isLoading && <ClimbingBoxLoader />}
+      {isLoading && <ClimbingBoxLoader size={15} color="#2ecca4" />}
     </div>
   );
 }

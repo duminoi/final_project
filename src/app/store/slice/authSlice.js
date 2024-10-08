@@ -1,11 +1,12 @@
+"use client";
 import { instanceAuth } from "@/plugins/axios";
 import axios from "axios";
-import { progress } from "framer-motion";
 
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 
 const initialState = {
   data: null,
+  token: JSON.parse(localStorage?.getItem("token")) || {},
   isLoading: null,
 };
 
@@ -14,13 +15,23 @@ export const registerAccount = createAsyncThunk(
   async (data) => {
     try {
       const respose = await instanceAuth.post("/master/user", data);
-      const dataResponse = await respose.data;
-      return dataResponse;
+      const infomation = await respose.data;
+      return infomation;
     } catch (e) {
       console.log(e);
     }
   }
 );
+
+export const loginAccount = createAsyncThunk("user/login", async (data) => {
+  try {
+    const response = await instanceAuth.post("/login", data);
+    const tokenData = await response.data;
+    return tokenData;
+  } catch (e) {
+    console.log(e);
+  }
+});
 
 const authSlice = createSlice({
   name: "auth",
@@ -36,8 +47,17 @@ const authSlice = createSlice({
     }),
       builder.addCase(registerAccount.fulfilled, (state, action) => {
         state.isLoading = false;
-
         console.log("action", action);
+      }),
+      builder.addCase(loginAccount.pending, (state) => {
+        state.isLoading = true;
+      }),
+      builder.addCase(loginAccount.fulfilled, (state, action) => {
+        state.isLoading = false;
+        console.log("action", action.payload);
+        const tokenData = action.payload;
+        state.token = tokenData;
+        localStorage.setItem("token", JSON.stringify(tokenData));
       });
   },
 });

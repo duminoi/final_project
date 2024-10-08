@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import DialogComponent from "@/(components)/Dialog";
 import CommonTable from "@/(components)/CommonTable";
 
-export default function () {
+export default function CategoryPage() {
   const { isLoading } = useSelector((state) => state.category);
   console.log(isLoading);
 
@@ -68,7 +68,7 @@ export default function () {
         handleClose={handleClose}
         handleDelete={handleDelete}
       />
-      {isLoading && <ClimbingBoxLoader />}
+      {isLoading && <ClimbingBoxLoader size={15} color="#2ecca4" />}
     </div>
   );
 }
