@@ -4,11 +4,12 @@ import { Button, Form, Input, Radio } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addCategory,
-  editCategory,
   setIsEdit,
+  editCategory,
 } from "@/app/store/slice/categorySlice";
 import { v4 as uuidv4 } from "uuid";
-const FormCategory = ({ id, setCategoryId }) => {
+import FormContainer from "./FormContainer";
+const FormCategory = ({ id }) => {
   const [form] = Form.useForm();
   const [formLayout, setFormLayout] = useState("horizontal");
   const { isEdit } = useSelector((state) => state.category);
@@ -21,13 +22,11 @@ const FormCategory = ({ id, setCategoryId }) => {
   );
 
   console.log("category", category);
-  console.log("id", id);
 
   const handleSubmit = (values) => {
     if (!isEdit) {
       dispatch(addCategory({ ...values, id: uuidv4() }));
     } else {
-      // console.log("vào đây", id);
       dispatch(
         editCategory({
           id: id,
@@ -39,50 +38,35 @@ const FormCategory = ({ id, setCategoryId }) => {
   const handleBack = () => {
     dispatch(setIsEdit(false));
     form.resetFields();
-    setCategoryId(null);
   };
   useEffect(() => {
-    form.setFieldsValue(category);
-  }, [category, form]);
+    if (isEdit) {
+      form.setFieldsValue(category);
+    }
+  }, [isEdit, category]);
   return (
-    <Form
-      form={form}
-      onFinish={handleSubmit}
-      layout={formLayout}
-      initialValues={{
-        layout: formLayout,
-      }}
-      onValuesChange={onFormLayoutChange}
-      style={{
-        maxWidth: formLayout === "inline" ? "none" : 600,
-      }}
+    <FormContainer
+      form={form} // Truyền instance form từ FormCategory
+      formLayout={formLayout}
+      onFormLayoutChange={onFormLayoutChange}
+      handleSubmit={handleSubmit}
+      handleBack={handleBack}
+      isEdit={isEdit}
     >
-      <Form.Item label="name" name={"name"}>
+      <Form.Item label="Tên" name={"name"}>
         <Input autoFocus={isEdit} placeholder="input placeholder" />
       </Form.Item>
-      <Form.Item label="short_name" name="short_name">
+      <Form.Item label="Tên ngắn" name="short_name">
         <Input autoFocus={isEdit} placeholder="input placeholder" />
       </Form.Item>
-      <Form.Item label="order_num" name={"order_num"}>
+      <Form.Item label="Vị trí" name={"order_num"}>
         <Input
           autoFocus={isEdit}
           value={"hello"}
           placeholder="input placeholder"
         />
       </Form.Item>
-      <Form.Item>
-        <div className="flex gap-4">
-          <Button type="primary" htmlType="submit">
-            {isEdit ? "Update Category" : "Add Category"}
-          </Button>
-          {isEdit && (
-            <Button onClick={handleBack} danger type="primary">
-              Back
-            </Button>
-          )}
-        </div>
-      </Form.Item>
-    </Form>
+    </FormContainer>
   );
 };
 export default FormCategory;

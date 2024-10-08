@@ -1,42 +1,48 @@
 {
   "categories": [
     {
-      "id": "e38a11c6-ea17-4e54-9b98-74a27e83c104",
-      "name": "dđádfasdf",
-      "short_name": "ddádf",
-      "order_num": "ddádfasd"
+      "name": "Thinkpad P10",
+      "short_name": "ádf",
+      "order_num": "hello",
+      "id": "16ae8d75-b9ad-452d-a9b8-66c5c1e33c46"
     },
     {
-      "name": "ccc",
+      "id": "22b365db-04d9-4ba6-bce5-74ec15a19cc4",
+      "name": "g",
+      "short_name": "g",
+      "order_num": "g"
+    },
+    {
+      "id": "1b916e9c-bc0c-470e-aed7-2687d6212ae2",
+      "name": "sd",
+      "category_id": "ss",
+      "order_num": "sss"
+    },
+    {
+      "id": "80afb437-57ec-4c53-8dad-344dd79d67e7",
+      "name": "ss",
       "short_name": "sad",
-      "order_num": "ádf",
-      "id": "f9041988-b8f9-4566-b53d-619c0405ff57"
-    },
-    {
-      "id": "8d0af930-b15a-4312-824c-18a6ddb41126",
-      "name": "ass",
-      "short_name": "ssdfas",
-      "order_num": "ádfa"
+      "order_num": "ádf"
     }
   ],
   "products": [
     {
-      "id": "1",
-      "name": "Product 1",
-      "category_id": 1,
-      "order_num": 1
+      "name": "Product 123",
+      "category_id": "234",
+      "order_num": 1,
+      "id": "1"
     },
     {
-      "id": "2",
-      "name": "Product 2",
-      "category_id": 1,
-      "order_num": 2
-    },
-    {
-      "id": "3",
+      "id": "29bb496b-4e90-4014-94f3-c461fd37e335",
       "name": "Product 3",
-      "category_id": 2,
-      "order_num": 1
+      "category_id": "3",
+      "order_num": "3"
+    },
+    {
+      "id": "4e8af344-be6b-4bb9-be11-e2fc4e246e5c",
+      "name": "Product 4",
+      "category_id": "4",
+      "order_num": "c4"
     }
   ]
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import instance from "@/plugins/axios";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -12,17 +13,19 @@ const initialState = {
 };
 
 export const getProduct = createAsyncThunk("product/fetchproduct", async () => {
-  const response = await fetch("http://localhost:3001/products", {
-    cache: "no-store",
-  });
-  const products = await response.json();
-
+ try {
+  const response = await instance.get("/products");
+  const products = await response.data;
   return products;
+ } catch (e) {
+  console.log(e);
+  
+ }
 });
 export const addProduct = createAsyncThunk(
   "product/addproduct",
   async (data) => {
-    const response = await axios.post("http://localhost:3001/products", data);
+    const response = await instance.post("/products", data);
     const product = await response.data;
     return product;
   }
@@ -30,8 +33,8 @@ export const addProduct = createAsyncThunk(
 export const editProduct = createAsyncThunk(
   "product/editproduct",
   async ({ id, values }) => {
-    const response = await axios.put(
-      `http://localhost:3001/products/${id}`,
+    const response = await instance.put(
+      `/products/${id}`,
       values
     );
     const product = await response.data;
@@ -42,7 +45,7 @@ export const editProduct = createAsyncThunk(
 export const deleteProduct = createAsyncThunk(
   "product/deleteproduct",
   async (id) => {
-    const response = await axios.delete(`http://localhost:3001/products/${id}`);
+    const response = await instance.delete(`http://localhost:3001/products/${id}`);
     const product = await response.data;
     return product;
   }

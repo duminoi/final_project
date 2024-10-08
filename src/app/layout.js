@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -27,7 +28,7 @@ export default function RootLayout({ children }) {
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Provider store={store}>
           <ToastContainer></ToastContainer>
-          {children}
+          <AntdRegistry>{children}</AntdRegistry>
         </Provider>
       </body>
     </html>

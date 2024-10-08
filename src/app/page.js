@@ -1,8 +1,11 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-import Link from "next/link";
-import AdminPage from "./admin/page";
+"use client";
+
+import LoginPage from "./auth/login/page";
 
 export default function Home() {
-  return <div>hello</div>;
+  return (
+    <div className="flex justify-center items-center wrap h-screen">
+      <LoginPage />
+    </div>
+  );
 }
