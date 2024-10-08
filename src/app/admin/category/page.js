@@ -18,6 +18,8 @@ export default function CategoryPage() {
   const [categoryId, setCategoryId] = useState(false);
   const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.category);
+  console.log("categories", categories);
+
   const [open, setOpen] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
   const rows = categories;
